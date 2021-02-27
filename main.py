@@ -79,7 +79,7 @@ class MainApp(App):
 
 
 if __name__ == '__main__':
-    LabelBase.register(name='Header', fn_regular="font/Uni Sans Heavy.ttf")
+    LabelBase.register(name='Header', fn_regular="font/VIDEOPHREAK.ttf")
     LabelBase.register(name='Normal', fn_regular="font/WhitneyBold.ttf")
 
     MainApp().run()
