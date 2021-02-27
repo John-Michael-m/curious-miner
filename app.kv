@@ -1,6 +1,11 @@
 #:import NoTransition kivy.uix.screenmanager.NoTransition
+
 <HoverButton>:
 
+<BrownBtn@HoverButton>: 
+    background_normal: ''
+    background_color: 53/255,19/255,8/255
+    font_name: "Normal"
 
 ScreenManager:
     transition: NoTransition()
@@ -24,15 +29,12 @@ ScreenManager:
             font_name: "Header"
             pos_hint: {'center_y' : 0.58}
             font_size: 100
-            color: 94/255,47/255,29/255
+            color: 53/255,19/255,8/255
             
-        HoverButton:
+        BrownBtn:
             text: 'Play'
-            font_name: "Normal"
             size_hint: (0.12,0.06)
             pos_hint: {'center_y' : 0.4, 'center_x': 0.5}
-            background_normal: ''
-            background_color: 53/255,19/255,8/255
             on_release:
                 app.root.current = 'GameMenu'
 
@@ -48,14 +50,86 @@ ScreenManager:
 
 
     GridLayout: 
+        cols: 4
+        pos_hint: {'x': 0.48, 'y':0.03}
+        size_hint: None, None
+        size: root.width/2,root.height-(root.height*0.06)
+        padding: 20,20,20,20
+        spacing: 10,10
         canvas:
             Color:
                 rgba: (175/255,142/255,110/255,1)
             RoundedRectangle:
                 radius: 10,10,10,10
-                pos: root.width*0.48, root.height*0.03
-                size: root.width/2,root.height-(root.height*0.06)
+                pos: self.pos
+                size: self.size
+
+        Image:
+            source: 'img\sandwich.png'
+            
+        Image:
+            source: 'img\potion.png'
+            
+        Image:
+            source: 'img\pokeball.png'
+           
+        Image:
+            source: 'img\goblet.png'
+
+       
+        BrownBtn: 
+            text: 'Buy 10G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
         
+        BrownBtn: 
+            text: 'Buy 20G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
+        
+        BrownBtn: 
+            text: 'Buy 50G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
+
+        BrownBtn: 
+            text: 'Buy 100G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
+        
+        Image:
+            source: 'img\watch.png'
+        
+        Image:
+            source: 'img\emerald.png'
+            
+        Image:
+            source: 'img\car.png'
+        
+        Image:
+            source: 'img\house.png'
+            
+        BrownBtn: 
+            text: 'Buy 175G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
+        
+        BrownBtn: 
+            text: 'Buy 300G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
+        
+        BrownBtn: 
+            text: 'Buy 750G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
+
+        BrownBtn: 
+            text: 'Buy 1000G'
+            size_hint: None, None
+            size: self.parent.width * 0.2, self.parent.height * 0.04
+        
+           
     
     FloatLayout:
         canvas:
@@ -75,23 +149,17 @@ ScreenManager:
                 pos: root.width*0.02, root.height*0.03
                 size: root.width*0.42,root.height-(root.height*0.68)
 
-        HoverButton:
+        BrownBtn:
             text: 'Go Mining'
-            font_name: "Normal"
             size_hint: (0.22,0.08)
             pos_hint: {'center_y' : 0.18, 'center_x': 0.24}
-            background_normal: ''
-            background_color: 53/255,19/255,8/255
             on_release:
                 app.root.current = 'MiningMenu'
         
-        HoverButton:
+        BrownBtn:
             text: '<-'
-            font_name: "Normal"
             size_hint: (0.03,0.04)
             pos_hint: {'center_y' : 0.18, 'center_x': 0.10}
-            background_normal: ''
-            background_color: 53/255,19/255,8/255
             on_release:
                 app.root.current = 'Intro'
 
