@@ -12,7 +12,6 @@
     size: self.parent.width * 0.2, self.parent.height * 0.04
 
 ScreenManager:
-    transition: NoTransition()
     Intro:
     GameMenu:
     MiningMenu:
@@ -42,6 +41,22 @@ ScreenManager:
             on_release:
                 app.root.current = 'GameMenu'
 
+        HoverButton:
+            background_normal: 'img\qmark2.png'
+            background_down: 'img\qmark.png'
+            size_hint: 0.06,0.1
+            pos_hint: {'top':1}
+            on_release:
+                root.show_popup()
+
+<IntroPopup>:
+    Label:
+        text: 'Ready to go mining? This is a game where you will venture out in real life and \nfollow the directions on your digikey gadgets to mine gold in exchange \nfor cool item achievements!'
+        font_name: 'Normal'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size: self.texture_size
+        line_height: 2
+        max_lines: 3
 
 <GameMenu>:
     name: 'GameMenu'
@@ -51,8 +66,7 @@ ScreenManager:
         Rectangle:
             pos: self.pos
             size: self.size
-
-
+            
     GridLayout: 
         cols: 4
         pos_hint: {'x': 0.48, 'y':0.03}
@@ -101,8 +115,7 @@ ScreenManager:
         ShopBtn: 
             text: 'Buy 750G'
         ShopBtn: 
-            text: 'Buy 1000G'
-           
+            text: 'Buy 1000G'    
     
     FloatLayout:
         pos_hint: {'x': 0.02, 'y':0.4}
@@ -172,6 +185,24 @@ ScreenManager:
             pos_hint: {'center_y' : 0.18, 'center_x': 0.10}
             on_release:
                 app.root.current = 'Intro'
+
+    GridLayout:
+        cols:2
+        pos_hint: {'x': 0.5, 'y':0.9}
+        size_hint: 0.14, 0.05
+        canvas:
+            Color:
+                rgba: (94/255,47/255,29/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: self.pos
+                size: self.size
+        Label:
+            text: '0'
+            size: self.texture_size
+            font_name: 'Normal'
+        Image:
+            source: 'img\gold.png'
 
 
 <MiningMenu>:
