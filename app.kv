@@ -41,6 +41,22 @@ ScreenManager:
             on_release:
                 app.root.current = 'GameMenu'
 
+        HoverButton:
+            background_normal: 'img\qmark2.png'
+            background_down: 'img\qmark.png'
+            size_hint: 0.06,0.1
+            pos_hint: {'top':1}
+            on_release:
+                root.show_popup()
+
+<IntroPopup>:
+    Label:
+        text: 'Ready to go mining? This is a game where you will venture out in real life and \nfollow the directions on your digikey gadgets to mine gold in exchange \nfor cool item achievements!'
+        font_name: 'Normal'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size: self.texture_size
+        line_height: 2
+        max_lines: 3
 
 <GameMenu>:
     name: 'GameMenu'

@@ -9,6 +9,7 @@ from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import BooleanProperty, ObjectProperty
 from kivy.core.window import Window
+from kivy.uix.popup import Popup
 
 class HoverBehavior(object):
 
@@ -62,8 +63,16 @@ class ScreenManager(ScreenManager):
 
 
 class Intro(Screen):
-    pass
+    def show_popup(self):
+        content = IntroPopup()
+        self.popup = Popup(title='How To Play', content=content, 
+                   size_hint=(None,None),size=(600,200), 
+                   title_font='font/WhitneyBold.ttf')
+        self.popup.open()
 
+
+class IntroPopup(FloatLayout):
+    pass
 
 class GameMenu(Screen):
     pass
