@@ -1,22 +1,71 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
 <HoverButton>:
 
 ScreenManager:
+    transition: NoTransition()
     Intro:
     GameMenu:
 
 <Intro>:
+
+    name: 'Intro'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "img/intro.jpg"
+
     FloatLayout:
         Label:
             text: 'Curious Miner'
             size: self.texture_size
             font_name: "Header"
-            pos_hint: {'center_y' : 0.75}
+            pos_hint: {'center_y' : 0.58}
+            font_size: 100
+            color: 94/255,47/255,29/255
             
         HoverButton:
             text: 'Play'
             font_name: "Normal"
-            font_size: 40
-            size_hint: (0.5,0.2)
-            pos_hint: {'center_x' : 0.5, 'center_y' : 0.5}
+            size_hint: (0.12,0.06)
+            pos_hint: {'center_y' : 0.4, 'center_x': 0.5}
+            background_normal: ''
+            background_color: 53/255,19/255,8/255
+            on_release:
+                app.root.current = 'GameMenu'
 
 <GameMenu>:
+    name: 'GameMenu'
+    canvas.before:
+        Color:
+            rgba: (53/255,19/255,8/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout: 
+        canvas:
+            Color:
+                rgba: (175/255,142/255,110/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: root.width*0.48, root.height*0.03
+                size: root.width/2,root.height-(root.height*0.06)
+    
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: (175/255,142/255,110/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: root.width*0.02, root.height*0.40
+                size: root.width*0.42,root.height-(root.height*0.43)
+    
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: (175/255,142/255,110/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: root.width*0.02, root.height*0.03
+                size: root.width*0.42,root.height-(root.height*0.68)

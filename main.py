@@ -1,11 +1,14 @@
+#from kivy.config import Config
+#Config.set('graphics', 'resizable', '0')
+
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.text import LabelBase
 from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import BooleanProperty, ObjectProperty
 from kivy.core.window import Window
-
 
 class HoverBehavior(object):
 
@@ -65,9 +68,12 @@ class Intro(Screen):
 class GameMenu(Screen):
     pass
 
+class ShopUI(FloatLayout):
+    pass
 
 class MainApp(App):
     def build(self):
+        Window.size = (1060,720)
         kv_file = Builder.load_file('app.kv')
         return kv_file
 
