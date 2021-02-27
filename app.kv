@@ -1,18 +1,5 @@
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 <HoverButton>:
-<ShopUI>:
-    FloatLayout:
-        canvas:
-            Color:
-                rgba: (175/255,142/255,110/255,1)
-            RoundedRectangle:
-                radius: 10,10,10,10
-                pos: root.width*0.48, root.height*0.03
-                size: root.width/2,root.height-(root.height*0.06)
-        Label:
-            text: "Shop"
-            font_name: "Normal"
-            pos: self.width/2,self.height/2
 
 ScreenManager:
     transition: NoTransition()
@@ -20,6 +7,7 @@ ScreenManager:
     GameMenu:
 
 <Intro>:
+
     name: 'Intro'
     canvas.before:
         Rectangle:
@@ -55,7 +43,14 @@ ScreenManager:
             pos: self.pos
             size: self.size
 
-    ShopUI:
+    FloatLayout: 
+        canvas:
+            Color:
+                rgba: (175/255,142/255,110/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: root.width*0.48, root.height*0.03
+                size: root.width/2,root.height-(root.height*0.06)
     
     FloatLayout:
         canvas:
