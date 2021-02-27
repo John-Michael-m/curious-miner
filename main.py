@@ -68,7 +68,7 @@ class Intro(Screen):
 class GameMenu(Screen):
     pass
 
-class ShopUI(FloatLayout):
+class MiningMenu(Screen):
     pass
 
 class MainApp(App):
