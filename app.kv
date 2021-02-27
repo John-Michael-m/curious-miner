@@ -1,6 +1,21 @@
+<HoverButton>:
+
 ScreenManager:
-    transition: NoTransition()
     Intro:
     GameMenu:
 
-MainMenu: 
+<Intro>:
+    FloatLayout:
+        Label:
+            text: 'Curious Miner'
+            size: self.texture_size
+            font_name: "Header"
+            pos_hint: {'center_y' : 0.75}
+            
+        HoverButton:
+            text: 'Play'
+            font_name: "Normal"
+            size_hint: (0.5,0.5)
+
+<GameMenu>:
+
