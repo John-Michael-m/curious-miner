@@ -7,6 +7,10 @@
     background_color: 53/255,19/255,8/255
     font_name: "Normal"
 
+<ShopBtn@BrownBtn>:
+    size_hint: None, None
+    size: self.parent.width * 0.2, self.parent.height * 0.04
+
 ScreenManager:
     transition: NoTransition()
     Intro:
@@ -52,8 +56,7 @@ ScreenManager:
     GridLayout: 
         cols: 4
         pos_hint: {'x': 0.48, 'y':0.03}
-        size_hint: None, None
-        size: root.width/2,root.height-(root.height*0.06)
+        size_hint: 0.5, 0.94
         padding: 20,20,20,20
         spacing: 10,10
         canvas:
@@ -66,80 +69,87 @@ ScreenManager:
 
         Image:
             source: 'img\sandwich.png'
-            
         Image:
-            source: 'img\potion.png'
-            
+            source: 'img\potion.png'    
         Image:
-            source: 'img\pokeball.png'
-           
+            source: 'img\pokeball.png'   
         Image:
             source: 'img\goblet.png'
 
-       
-        BrownBtn: 
+        ShopBtn: 
             text: 'Buy 10G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
-        
-        BrownBtn: 
-            text: 'Buy 20G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
-        
-        BrownBtn: 
+        ShopBtn: 
+            text: 'Buy 20G'       
+        ShopBtn: 
             text: 'Buy 50G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
-
-        BrownBtn: 
+        ShopBtn: 
             text: 'Buy 100G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
         
         Image:
-            source: 'img\watch.png'
-        
+            source: 'img\watch.png'        
         Image:
-            source: 'img\emerald.png'
-            
+            source: 'img\emerald.png'           
         Image:
-            source: 'img\car.png'
-        
+            source: 'img\car.png'      
         Image:
             source: 'img\house.png'
-            
-        BrownBtn: 
+    
+        ShopBtn: 
             text: 'Buy 175G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
-        
-        BrownBtn: 
+        ShopBtn: 
             text: 'Buy 300G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
-        
-        BrownBtn: 
+        ShopBtn: 
             text: 'Buy 750G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
-
-        BrownBtn: 
+        ShopBtn: 
             text: 'Buy 1000G'
-            size_hint: None, None
-            size: self.parent.width * 0.2, self.parent.height * 0.04
-        
            
     
     FloatLayout:
+        pos_hint: {'x': 0.02, 'y':0.4}
+        size_hint: 0.42, 0.57
         canvas:
-            Color:
-                rgba: (175/255,142/255,110/255,1)
             RoundedRectangle:
                 radius: 10,10,10,10
-                pos: root.width*0.02, root.height*0.40
-                size: root.width*0.42,root.height-(root.height*0.43)
-    
+                source: 'img\shelf.jpg'
+                pos: self.pos
+                size: self.size
+        
+        Image:
+            source: 'img\house.png'
+            size_hint: 0.28,0.28
+            pos: self.parent.width*0.70, self.parent.y*1.05
+            color: 0,0,0,0.8
+        Image:
+            source: 'img\car.png'
+            size_hint: 0.50,0.50
+            pos: self.parent.width*0.28, self.parent.y*0.8
+            color: 0,0,0,0.8
+        Image:
+            source: 'img\watch.png'
+            size_hint: 0.16,0.16
+            pos: self.parent.width*0.75, self.parent.y*1.5
+            color: 0,0,0,0.8
+        Image:
+            source: 'img\goblet.png'
+            size_hint: 0.22,0.22
+            pos: self.parent.width*0.6, self.parent.y*1.5
+            color: 0,0,0,0.8
+        Image:
+            source: 'img\pokeball.png'
+            size_hint: 0.2,0.2
+            pos: self.parent.width*0.3, self.parent.y*1.5
+            color: 0,0,0,0.8
+        Image:
+            source: 'img\potion.png'
+            size_hint: 0.2,0.2
+            pos: self.parent.width*0.6, self.parent.y*1.95
+            color: 0,0,0,0.8
+        Image:
+            source: 'img\sandwich.png'
+            size_hint: 0.2,0.2
+            pos: self.parent.width*0.45, self.parent.y*1.88
+            color: 0,0,0,0.8
+
     FloatLayout:
         canvas:
             Color:
