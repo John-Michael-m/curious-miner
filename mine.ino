@@ -51,11 +51,11 @@ do {
     if(bt1state and bt2state) {
     //numGold[100] = g;
     //strcat(numGold, "G");
-    itoa(g,buff, 10); 
-    u8g2.drawStr(45,55, buff);
-    //u8g2.sendBuffer();
-    g++;
-    delay(1000);
+      itoa(g,buff, 10); 
+      u8g2.drawStr(45,55, buff);
+      //u8g2.sendBuffer();
+      g++;
+      delay(1000);
   }
   }
 } while (u8g2.nextPage());
