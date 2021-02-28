@@ -43,13 +43,12 @@ do {
   ltoa(sec, buf, 10);
   if(timeRemaining >= 0){
     u8g2.drawStr(45,35,buf);// i meant for this to be displayed under the arrow yeah. 
-   // u8g2.sendBuffer();
-  }
-  bool bt1state = digitalRead(button1)==LOW;
-  bool bt2state = digitalRead(button2)==LOW;
-  Serial.println(bt1state);
-  Serial.println(bt2state);
-  if(bt1state and bt2state) {
+    // u8g2.sendBuffer();
+    bool bt1state = digitalRead(button1)==LOW;
+    bool bt2state = digitalRead(button2)==LOW;
+    Serial.println(bt1state);
+    Serial.println(bt2state);
+    if(bt1state and bt2state) {
     //numGold[100] = g;
     //strcat(numGold, "G");
     itoa(g,buff, 10); 
@@ -57,6 +56,7 @@ do {
     //u8g2.sendBuffer();
     g++;
     delay(1000);
+  }
   }
 } while (u8g2.nextPage());
   
