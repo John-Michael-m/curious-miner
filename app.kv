@@ -252,6 +252,7 @@ ScreenManager:
 <MiningMenu>:
     name: 'MiningMenu'
     gold: gold
+    counter: counter
 
     canvas.before:
         Color:
@@ -266,6 +267,14 @@ ScreenManager:
         keep_ratio: False
 
     FloatLayout:
+        Label:
+            id: counter
+            text: ' '
+            size: self.texture_size
+            font_name: "Normal"
+            pos_hint: {'center_x' : 0.5, 'center_y' : 0.75}
+            font_size: 80
+            color: 94/255,47/255,29/255
         Label:
             text: "Use your device to start mining!"
             size: self.texture_size

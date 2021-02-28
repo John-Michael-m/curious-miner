@@ -10,6 +10,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import BooleanProperty, ObjectProperty
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
+from kivy.clock import Clock
 
 GOLD = 0
 
@@ -110,12 +111,28 @@ class GameMenu(Screen):
 
 class MiningMenu(Screen):
     gold = ObjectProperty(None)
+    counter = ObjectProperty(None)
+
 
     def on_enter(self):
         self.update_gold()
 
+        #timer
+        self.counter.text = '120'
+        self.event = Clock.schedule_interval(self.update_label, 1)
+
     def update_gold(self):
         self.gold.text = str(GOLD)
+    
+    def update_label(self, *args):
+        #Update the timer label  
+        time = int(self.counter.text) - 1
+        self.counter.text = str(time)
+
+        if time == 0:
+            Clock.unschedule(self.event)
+            self.manager.current = 'GameMenu'
+
 
 
 class MainApp(App):
