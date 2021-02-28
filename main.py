@@ -11,7 +11,7 @@ from kivy.properties import BooleanProperty, ObjectProperty
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 
-GOLD = 100
+GOLD = 0
 
 class HoverBehavior(object):
 
@@ -105,6 +105,7 @@ class GameMenu(Screen):
 
     def update_item(self, item):
         item.color = (1,1,1,1)
+        
 
 
 class MiningMenu(Screen):
@@ -118,6 +119,7 @@ class MiningMenu(Screen):
 
 
 class MainApp(App):
+
     def build(self):
         Window.size = (1060,720)
         kv_file = Builder.load_file('app.kv')
