@@ -11,6 +11,9 @@ from kivy.properties import BooleanProperty, ObjectProperty
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
+
+import random
 
 GOLD = 0
 
@@ -118,24 +121,34 @@ class MiningMenu(Screen):
         self.update_gold()
 
         #timer
-        self.counter.text = '120'
+        self.counter.text = '60'
         self.event = Clock.schedule_interval(self.update_label, 1)
+
 
     def update_gold(self):
         self.gold.text = str(GOLD)
     
     def update_label(self, *args):
+        global GOLD
         #Update the timer label  
         time = int(self.counter.text) - 1
         self.counter.text = str(time)
 
         if time == 0:
+            GOLD * 1.2
             Clock.unschedule(self.event)
             self.manager.current = 'GameMenu'
+    
 
 
 
 class MainApp(App):
+
+    def on_start(self):
+        self.sound = SoundLoader.load('music.mp3')
+        self.sound.volume = 0.1
+        self.sound.loop = True
+        self.sound.play()
 
     def build(self):
         Window.size = (1060,720)
