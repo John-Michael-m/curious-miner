@@ -11,6 +11,7 @@
     size_hint: None, None
     size: self.parent.width * 0.2, self.parent.height * 0.04
 
+
 ScreenManager:
     Intro:
     GameMenu:
@@ -49,6 +50,7 @@ ScreenManager:
             on_release:
                 root.show_popup()
 
+
 <IntroPopup>:
     Label:
         text: 'Ready to go mining? This is a game where you will venture out in real life and \nfollow the directions on your digikey gadgets to mine gold in exchange \nfor cool item achievements!'
@@ -58,8 +60,20 @@ ScreenManager:
         line_height: 2
         max_lines: 3
 
+
 <GameMenu>:
     name: 'GameMenu'
+    gold: gold
+
+    house: house
+    car: car
+    emerald: emerald
+    watch: watch
+    goblet: goblet
+    pokeball: pokeball
+    potion: potion
+    sandwich: sandwich
+    
     canvas.before:
         Color:
             rgba: (53/255,19/255,8/255,1)
@@ -92,12 +106,20 @@ ScreenManager:
 
         ShopBtn: 
             text: 'Buy 10G'
+            on_release:
+                root.buy(sandwich, 10)
         ShopBtn: 
-            text: 'Buy 20G'       
+            text: 'Buy 20G'  
+            on_release:
+                root.buy(potion, 20)
         ShopBtn: 
             text: 'Buy 50G'
+            on_release:
+                root.buy(pokeball, 50)
         ShopBtn: 
             text: 'Buy 100G'
+            on_release:
+                root.buy(goblet, 100)
         
         Image:
             source: 'img\watch.png'        
@@ -110,12 +132,20 @@ ScreenManager:
     
         ShopBtn: 
             text: 'Buy 175G'
+            on_release:
+                root.buy(watch, 175) 
         ShopBtn: 
             text: 'Buy 300G'
+            on_release:
+                root.buy(emerald, 300)
         ShopBtn: 
             text: 'Buy 750G'
+            on_release:
+                root.buy(car, 750) 
         ShopBtn: 
-            text: 'Buy 1000G'    
+            text: 'Buy 1000G'
+            on_release:
+                root.buy(house, 1000)    
     
     FloatLayout:
         pos_hint: {'x': 0.02, 'y':0.4}
@@ -128,36 +158,49 @@ ScreenManager:
                 size: self.size
         
         Image:
+            id: house
             source: 'img\house.png'
             size_hint: 0.28,0.28
             pos: self.parent.width*0.70, self.parent.y*1.05
             color: 0,0,0,0.8
         Image:
+            id: car
             source: 'img\car.png'
             size_hint: 0.50,0.50
             pos: self.parent.width*0.28, self.parent.y*0.8
             color: 0,0,0,0.8
         Image:
+            id: emerald
+            source: 'img\emerald.png'
+            size_hint: 0.15,0.15
+            pos: self.parent.width*0.1, self.parent.y*1.05
+            color: 0,0,0,0.8
+        Image:
+            id: watch
             source: 'img\watch.png'
             size_hint: 0.16,0.16
             pos: self.parent.width*0.75, self.parent.y*1.5
             color: 0,0,0,0.8
         Image:
+            id: goblet
             source: 'img\goblet.png'
             size_hint: 0.22,0.22
             pos: self.parent.width*0.6, self.parent.y*1.5
             color: 0,0,0,0.8
         Image:
+            id: pokeball
             source: 'img\pokeball.png'
             size_hint: 0.2,0.2
             pos: self.parent.width*0.3, self.parent.y*1.5
             color: 0,0,0,0.8
         Image:
+            id: potion
             source: 'img\potion.png'
             size_hint: 0.2,0.2
             pos: self.parent.width*0.6, self.parent.y*1.95
             color: 0,0,0,0.8
         Image:
+            id: sandwich
             source: 'img\sandwich.png'
             size_hint: 0.2,0.2
             pos: self.parent.width*0.45, self.parent.y*1.88
@@ -198,7 +241,8 @@ ScreenManager:
                 pos: self.pos
                 size: self.size
         Label:
-            text: '0'
+            id: gold
+            text: ' '
             size: self.texture_size
             font_name: 'Normal'
         Image:
@@ -207,6 +251,8 @@ ScreenManager:
 
 <MiningMenu>:
     name: 'MiningMenu'
+    gold: gold
+
     canvas.before:
         Color:
             rgba: (53/255,19/255,8/255,1)
@@ -220,7 +266,6 @@ ScreenManager:
         keep_ratio: False
 
     FloatLayout:
-        
         Label:
             text: "Use your device to start mining!"
             size: self.texture_size
@@ -228,4 +273,23 @@ ScreenManager:
             pos_hint: {'center_y' : 0.5}
             font_size: 50
             color: 94/255,47/255,29/255
+    
+    GridLayout:
+        cols:2
+        pos_hint: {'center_x': 0.5, 'center_y':0.3}
+        size_hint: 0.14, 0.05
+        canvas:
+            Color:
+                rgba: (94/255,47/255,29/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: self.pos
+                size: self.size
+        Label:
+            id: gold
+            text: ' '
+            size: self.texture_size
+            font_name: 'Normal'
+        Image:
+            source: 'img\gold.png'
             
