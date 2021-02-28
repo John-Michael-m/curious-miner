@@ -11,6 +11,8 @@ from kivy.properties import BooleanProperty, ObjectProperty
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 
+GOLD = 100
+
 class HoverBehavior(object):
 
     hovered = BooleanProperty(False)
@@ -74,11 +76,46 @@ class Intro(Screen):
 class IntroPopup(FloatLayout):
     pass
 
+
 class GameMenu(Screen):
-    pass
+    global GOLD
+    gold = ObjectProperty(None)
+
+    house = ObjectProperty(None)
+    car = ObjectProperty(None)
+    emerald = ObjectProperty(None)
+    watch = ObjectProperty(None)
+    goblet = ObjectProperty(None)
+    pokeball = ObjectProperty(None)
+    potion = ObjectProperty(None)
+    sandwich = ObjectProperty(None)
+
+    def on_enter(self):
+        self.update_gold()
+
+    def update_gold(self):
+        self.gold.text = str(GOLD)
+    
+    def buy(self, item, amount):
+        global GOLD
+        if GOLD >= amount:
+            GOLD -= amount
+            self.update_gold()
+            self.update_item(item)
+
+    def update_item(self, item):
+        item.color = (1,1,1,1)
+
 
 class MiningMenu(Screen):
-    pass
+    gold = ObjectProperty(None)
+
+    def on_enter(self):
+        self.update_gold()
+
+    def update_gold(self):
+        self.gold.text = str(GOLD)
+
 
 class MainApp(App):
     def build(self):
