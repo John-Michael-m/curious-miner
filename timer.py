@@ -19,7 +19,7 @@ class MainApp(App):
   def on_start(self):
     self.function_interval = Clock.scheduele_interval(self.update_label, 1)
     Clock.scheduele_once(self.focus_text_input, 1)#THIS line of code is not necessarily needed but we could keep it there if we want to
-    Clock.scheduele_once(self.stop_interval, 60) 
+    Clock.scheduele_once(self.stop_interval, 600) 
     
  
  #This function is there to stop the clock when a specific number has been reached
