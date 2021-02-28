@@ -15,11 +15,11 @@ GridLayout:
 
 
 class MainApp(App):
-  #Makes the timer add one number per second until it reaches 600 seconds(10 minutes)
+  #Makes the timer add one number per second until it reaches 60 seconds(1 minute)
   def on_start(self):
     self.function_interval = Clock.scheduele_interval(self.update_label, 1)
     Clock.scheduele_once(self.focus_text_input, 1)#THIS line of code is not necessarily needed but we could keep it there if we want to
-    Clock.scheduele_once(self.stop_interval, 600) 
+    Clock.scheduele_once(self.stop_interval, 60) 
     
  
  #This function is there to stop the clock when a specific number has been reached
