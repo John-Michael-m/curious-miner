@@ -1,23 +1,22 @@
 #:import NoTransition kivy.uix.screenmanager.NoTransition
+
 <HoverButton>:
-<ShopUI>:
-    FloatLayout:
-        canvas:
-            Color:
-                rgba: (175/255,142/255,110/255,1)
-            RoundedRectangle:
-                radius: 10,10,10,10
-                pos: root.width*0.48, root.height*0.03
-                size: root.width/2,root.height-(root.height*0.06)
-        Label:
-            text: "Shop"
-            font_name: "Normal"
-            pos: self.width/2,self.height/2
+
+<BrownBtn@HoverButton>: 
+    background_normal: ''
+    background_color: 53/255,19/255,8/255
+    font_name: "Normal"
+
+<ShopBtn@BrownBtn>:
+    size_hint: None, None
+    size: self.parent.width * 0.2, self.parent.height * 0.04
+
 
 ScreenManager:
-    transition: NoTransition()
     Intro:
     GameMenu:
+    MiningMenu:
+
 
 <Intro>:
     name: 'Intro'
@@ -34,38 +33,179 @@ ScreenManager:
             font_name: "Header"
             pos_hint: {'center_y' : 0.58}
             font_size: 100
-            color: 94/255,47/255,29/255
+            color: 53/255,19/255,8/255
             
-        HoverButton:
+        BrownBtn:
             text: 'Play'
-            font_name: "Normal"
             size_hint: (0.12,0.06)
             pos_hint: {'center_y' : 0.4, 'center_x': 0.5}
-            background_normal: ''
-            background_color: 53/255,19/255,8/255
             on_release:
                 app.root.current = 'GameMenu'
 
+        HoverButton:
+            background_normal: 'img\qmark2.png'
+            background_down: 'img\qmark.png'
+            size_hint: 0.06,0.1
+            pos_hint: {'top':1}
+            on_release:
+                root.show_popup()
+
+
+<IntroPopup>:
+    Label:
+        text: 'Ready to go mining? This is a game where you will use digikey gadgets \nto mine gold in exchange for cool item achievements!'
+        font_name: 'Normal'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size: self.texture_size
+        line_height: 2
+        max_lines: 3
+
+
 <GameMenu>:
     name: 'GameMenu'
+    gold: gold
+
+    house: house
+    car: car
+    emerald: emerald
+    watch: watch
+    goblet: goblet
+    pokeball: pokeball
+    potion: potion
+    sandwich: sandwich
+    
     canvas.before:
         Color:
             rgba: (53/255,19/255,8/255,1)
         Rectangle:
             pos: self.pos
             size: self.size
-
-    ShopUI:
-    
-    FloatLayout:
+            
+    GridLayout: 
+        cols: 4
+        pos_hint: {'x': 0.48, 'y':0.03}
+        size_hint: 0.5, 0.94
+        padding: 20,20,20,20
+        spacing: 10,10
         canvas:
             Color:
                 rgba: (175/255,142/255,110/255,1)
             RoundedRectangle:
                 radius: 10,10,10,10
-                pos: root.width*0.02, root.height*0.40
-                size: root.width*0.42,root.height-(root.height*0.43)
+                pos: self.pos
+                size: self.size
+
+        Image:
+            source: 'img\sandwich.png'
+        Image:
+            source: 'img\potion.png'    
+        Image:
+            source: 'img\pokeball.png'   
+        Image:
+            source: 'img\goblet.png'
+
+        ShopBtn: 
+            text: 'Buy 10G'
+            on_release:
+                root.buy(sandwich, 10)
+        ShopBtn: 
+            text: 'Buy 20G'  
+            on_release:
+                root.buy(potion, 20)
+        ShopBtn: 
+            text: 'Buy 50G'
+            on_release:
+                root.buy(pokeball, 50)
+        ShopBtn: 
+            text: 'Buy 100G'
+            on_release:
+                root.buy(goblet, 100)
+        
+        Image:
+            source: 'img\watch.png'        
+        Image:
+            source: 'img\emerald.png'           
+        Image:
+            source: 'img\car.png'      
+        Image:
+            source: 'img\house.png'
     
+        ShopBtn: 
+            text: 'Buy 175G'
+            on_release:
+                root.buy(watch, 175) 
+        ShopBtn: 
+            text: 'Buy 300G'
+            on_release:
+                root.buy(emerald, 300)
+        ShopBtn: 
+            text: 'Buy 750G'
+            on_release:
+                root.buy(car, 750) 
+        ShopBtn: 
+            text: 'Buy 1000G'
+            on_release:
+                root.buy(house, 1000)    
+    
+    FloatLayout:
+        pos_hint: {'x': 0.02, 'y':0.4}
+        size_hint: 0.42, 0.57
+        canvas:
+            RoundedRectangle:
+                radius: 10,10,10,10
+                source: 'img\shelf.jpg'
+                pos: self.pos
+                size: self.size
+        
+        Image:
+            id: house
+            source: 'img\house.png'
+            size_hint: 0.28,0.28
+            pos: self.parent.width*0.70, self.parent.y*1.05
+            color: 0,0,0,0.8
+        Image:
+            id: car
+            source: 'img\car.png'
+            size_hint: 0.50,0.50
+            pos: self.parent.width*0.28, self.parent.y*0.8
+            color: 0,0,0,0.8
+        Image:
+            id: emerald
+            source: 'img\emerald.png'
+            size_hint: 0.15,0.15
+            pos: self.parent.width*0.1, self.parent.y*1.05
+            color: 0,0,0,0.8
+        Image:
+            id: watch
+            source: 'img\watch.png'
+            size_hint: 0.16,0.16
+            pos: self.parent.width*0.75, self.parent.y*1.5
+            color: 0,0,0,0.8
+        Image:
+            id: goblet
+            source: 'img\goblet.png'
+            size_hint: 0.22,0.22
+            pos: self.parent.width*0.6, self.parent.y*1.5
+            color: 0,0,0,0.8
+        Image:
+            id: pokeball
+            source: 'img\pokeball.png'
+            size_hint: 0.2,0.2
+            pos: self.parent.width*0.3, self.parent.y*1.5
+            color: 0,0,0,0.8
+        Image:
+            id: potion
+            source: 'img\potion.png'
+            size_hint: 0.2,0.2
+            pos: self.parent.width*0.6, self.parent.y*1.95
+            color: 0,0,0,0.8
+        Image:
+            id: sandwich
+            source: 'img\sandwich.png'
+            size_hint: 0.2,0.2
+            pos: self.parent.width*0.45, self.parent.y*1.88
+            color: 0,0,0,0.8
+
     FloatLayout:
         canvas:
             Color:
@@ -75,8 +215,97 @@ ScreenManager:
                 pos: root.width*0.02, root.height*0.03
                 size: root.width*0.42,root.height-(root.height*0.68)
 
+        BrownBtn:
+            text: 'Go Mining'
+            size_hint: (0.22,0.08)
+            pos_hint: {'center_y' : 0.18, 'center_x': 0.24}
+            on_release:
+                app.root.current = 'MiningMenu'
+        
+        BrownBtn:
+            text: '<-'
+            size_hint: (0.03,0.04)
+            pos_hint: {'center_y' : 0.18, 'center_x': 0.10}
+            on_release:
+                app.root.current = 'Intro'
+
+    GridLayout:
+        cols:2
+        pos_hint: {'x': 0.5, 'y':0.9}
+        size_hint: 0.14, 0.05
+        canvas:
+            Color:
+                rgba: (94/255,47/255,29/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: self.pos
+                size: self.size
+        Label:
+            id: gold
+            text: ' '
+            size: self.texture_size
+            font_name: 'Normal'
+        Image:
+            source: 'img\gold.png'
 
 
+<MiningMenu>:
+    name: 'MiningMenu'
+    gold: gold
+    counter: counter
+
+    canvas.before:
+        Color:
+            rgba: (53/255,19/255,8/255,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Image:
+        source: 'img\map.png'
+        size_hint: 1,1
+        allow_stretch: True
+        keep_ratio: False
+
+    FloatLayout:
+        Label:
+            id: counter
+            text: ' '
+            size: self.texture_size
+            font_name: "Normal"
+            pos_hint: {'center_x' : 0.5, 'center_y' : 0.75}
+            font_size: 80
+            color: 94/255,47/255,29/255
+        Label:
+            text: "Use your device to start mining!"
+            size: self.texture_size
+            font_name: "Normal"
+            pos_hint: {'center_y' : 0.5}
+            font_size: 50
+            color: 94/255,47/255,29/255
+        BrownBtn:
+            text: '<-'
+            size_hint: (0.03,0.05)
+            pos_hint: {'center_y' : 0.12, 'center_x': 0.10}
+            on_release:
+                app.root.current = 'GameMenu'
+        
     
-
-
+    GridLayout:
+        cols:2
+        pos_hint: {'center_x': 0.5, 'center_y':0.3}
+        size_hint: 0.14, 0.05
+        canvas:
+            Color:
+                rgba: (94/255,47/255,29/255,1)
+            RoundedRectangle:
+                radius: 10,10,10,10
+                pos: self.pos
+                size: self.size
+        Label:
+            id: gold
+            text: ' '
+            size: self.texture_size
+            font_name: 'Normal'
+        Image:
+            source: 'img\gold.png'
+            
