@@ -1,4 +1,3 @@
-
 //include <splash.h>
 #include <Wire.h> //For I2C (How the display and board talk to each other)
 #include <Arduino.h> //required for screen, idk what rn
@@ -57,6 +56,9 @@ do {
       g++;
       delay(1000);
     }
+  }else{
+    u8g2.clearBuffer();
+    u8g2.drawStr(45,55, "TIME'S UP!");
   }
 } while (u8g2.nextPage());
   
