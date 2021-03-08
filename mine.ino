@@ -7,7 +7,7 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R2, SCL, SDA, U8X8_PIN_NONE);
 int button = 6;
 int button1 = 2;
 int button2 = 3;
-int g = 1;
+int g = 0;
 char buff[30];
 //char numGold[100];
 unsigned long StartTime = millis();
@@ -50,12 +50,17 @@ do {
     if(bt1state and bt2state) {
       //numGold[100] = g;
       //strcat(numGold, "G");
-      itoa(g,buff, 10); 
-      u8g2.drawStr(45,55, buff);
+      //itoa(g,buff, 10); //
+      //u8g2.drawStr(45,55, buff);//
       //u8g2.sendBuffer();
       g++;
-      delay(1000);
+      
+      delay(1000);//otherwise the g will just increase while they're not holding the button and all they have to do is press once to accumulate all the g
     }
+    if(!bt1state and !bt2state){
+        itoa(g,buff, 10);
+        u8g2.drawStr(45,55, buff);
+      }
   }else{
     u8g2.clearBuffer();
     u8g2.drawStr(45,55, "TIME'S UP!");
